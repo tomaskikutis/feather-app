@@ -23,6 +23,7 @@ worker.onmessage = ({data}) => {
   const { url, payload } = data
   requestAnimationFrame(() => {
     applyPatch(rootElement, payload)
+    setTimeout(() => console.timeEnd('time from click to patched state'))
   })
   // we only want to update the URL
   // if it's different than the current
@@ -76,6 +77,7 @@ document.body.addEventListener('click', (event) => {
   // describing the action that occured
   const click = event.target['data-click']
   if (click) {
+    console.time('time from click to patched state')
     event.preventDefault()
     worker.postMessage(click)
   }

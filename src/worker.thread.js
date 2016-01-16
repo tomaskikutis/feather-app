@@ -9,6 +9,7 @@ let renderCount = 0
 // our entire application state
 // as a plain object
 const state = {
+  messages: [],
   count: 0,
   url: '/'
 }
@@ -39,6 +40,11 @@ self.onmessage = ({data}) => {
     case 'decrement': {
       state.count--
       break
+    }
+    case 'addDomNodes': {
+      for (var i = 0; i < payload.amount; i++) {
+        state.messages.push('Performance matters')
+      }
     }
   }
 
